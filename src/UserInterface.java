@@ -112,7 +112,7 @@ public class UserInterface {
         application.createNewAnimal(name,description,type,age);
 
         // When created a new animal, show the list again
-        list();
+        application.getAllAnimals();
     }
 
     private void delete() {

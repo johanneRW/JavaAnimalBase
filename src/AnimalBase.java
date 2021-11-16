@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+
+import static java.util.Collections.*;
+
 public class AnimalBase {
 
     private ArrayList<Animal> animals;
@@ -10,6 +13,11 @@ public class AnimalBase {
 
     public void start() {
         UserInterface ui = new UserInterface(this);
+        //Test-remove later
+        createNewAnimal("findus","lovely","cat",14);
+        createNewAnimal("abelone","small","bird",2);
+        createNewAnimal("bilbo","happy","dog",9);
+
         ui.start();
     }
 
@@ -23,8 +31,10 @@ public class AnimalBase {
     }
 
     public void sortBy(String sort) {
+        sort(animals);
+
         // TODO: Implement sorting!
-        System.out.println("TODO: Sort the list of animals by: " + sort);
+        //System.out.println("TODO: Sort the list of animals by: " + sort);
     }
 
     public void createNewAnimal(String name, String description, String type, int age) {
