@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 import static java.util.Collections.*;
@@ -14,9 +15,9 @@ public class AnimalBase {
     public void start() {
         UserInterface ui = new UserInterface(this);
         //Test-remove later
-        createNewAnimal("findus","lovely","cat",14);
-        createNewAnimal("abelone","small","bird",2);
-        createNewAnimal("bilbo","happy","dog",9);
+        createNewAnimal("findus", "lovely", "cat", 14);
+        createNewAnimal("abelone", "small", "bird", 2);
+        createNewAnimal("bilbo", "happy", "dog", 9);
 
         ui.start();
     }
@@ -31,21 +32,26 @@ public class AnimalBase {
     }
 
     public void sortBy(String sort) {
-        sort(animals);
-
-        // TODO: Implement sorting!
-        //System.out.println("TODO: Sort the list of animals by: " + sort);
+        if (sort.equals("n")) {
+            sort(animals, new NameComperator());
+        }
+        if (sort.equals("t")) {
+            sort(animals, new TypeComperator());
+        }
+        if (sort.equals("a")) {
+            sort(animals, new AgeComparator());
+        }
     }
 
     public void createNewAnimal(String name, String description, String type, int age) {
-        Animal animal = new Animal(name,description,type,age);
+        Animal animal = new Animal(name, description, type, age);
         animals.add(animal);
     }
 
     public void deleteAnimal(String name) throws NonExistingAnimalException {
         // find animal with this name
         Animal animal = findAnimalByName(name);
-        if(animal == null) {
+        if (animal == null) {
             throw new NonExistingAnimalException();
         } else {
             animals.remove(animal);
@@ -53,8 +59,8 @@ public class AnimalBase {
     }
 
     private Animal findAnimalByName(String name) {
-        for(Animal animal : animals) {
-            if(animal.getName().equalsIgnoreCase(name)) {
+        for (Animal animal : animals) {
+            if (animal.getName().equalsIgnoreCase(name)) {
                 return animal;
             }
         }
